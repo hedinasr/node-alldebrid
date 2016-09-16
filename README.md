@@ -15,7 +15,7 @@
 
 # Usage<a id="orgheadline2"></a>
 
-    var Alldebrid = require('./lib/alldebrid.js');
+    var Alldebrid = require('node-alldebrid');
     
     var alldebrid = new Alldebrid();
     

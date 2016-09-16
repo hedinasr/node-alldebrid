@@ -1,11 +1,12 @@
 {
   "name": "node-alldebrid",
   "version": "0.0.1",
-  "description": "alldebrid command line tool",
+  "description": "Alldebrid command line tool",
   "main": "main.js",
-  "author": "ananasr",
+  "author": "Ananasr <h.nsr69@gmail.com>",
   "dependencies": {
     "minimist": "^1.2.0",
     "request": "latest"
-  }
+  },
+  "license": "MIT"
 }

@@ -1,6 +1,6 @@
 {
   "name": "node-alldebrid",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Alldebrid command line tool",
   "main": "main.js",
   "author": "Ananasr <h.nsr69@gmail.com>",

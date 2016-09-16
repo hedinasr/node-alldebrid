@@ -4,6 +4,7 @@
 <ul>
 <li><a href="#orgheadline1">1. Install</a></li>
 <li><a href="#orgheadline2">2. Usage</a></li>
+<li><a href="#orgheadline3">3. Next</a></li>
 </ul>
 </div>
 </div>
@@ -24,3 +25,7 @@
             return console.log(err);
         alldebrid.debrid('mylink');
     });
+
+# Next<a id="orgheadline3"></a>
+
+-   [ ] Command line tool

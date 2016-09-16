@@ -1,11 +1,11 @@
 {
-  "name"         : "nodebrid",
-  "version"      : "0.0.1",
-  "description"  : "alldebrid command line tool",
-  "main"         : "main.js",
-  "author"       : "ananasr",
-  "dependencies" : {
-    "request"    : "latest"
+  "name": "node-alldebrid",
+  "version": "0.0.1",
+  "description": "alldebrid command line tool",
+  "main": "main.js",
+  "author": "ananasr",
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "request": "latest"
   }
 }
-

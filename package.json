@@ -3,10 +3,14 @@
   "version": "0.0.3",
   "description": "Alldebrid command line tool",
   "main": "main.js",
+  "repository": "git://github.com/Ananasr/node-alldebrid.git",
   "author": "Ananasr <h.nsr69@gmail.com>",
   "dependencies": {
     "minimist": "^1.2.0",
     "request": "latest"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "bin": {
+	"alldebrid": "main.js"
+  }  
 }

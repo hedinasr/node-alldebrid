@@ -4,7 +4,6 @@
 <ul>
 <li><a href="#orgheadline1">1. Install</a></li>
 <li><a href="#orgheadline2">2. Usage</a></li>
-<li><a href="#orgheadline3">3. Next</a></li>
 </ul>
 </div>
 </div>
@@ -12,9 +11,17 @@
 
 # Install<a id="orgheadline1"></a>
 
-    npm install node-alldebrid
+-   For library using :
+
+    npm install node-alldebrid --save
+
+-   For command line tool :
+
+    npm install -g node-alldebrid
 
 # Usage<a id="orgheadline2"></a>
+
+-   Library :
 
     var Alldebrid = require('node-alldebrid');
     
@@ -26,6 +33,10 @@
         alldebrid.debrid('mylink');
     });
 
-# Next<a id="orgheadline3"></a>
+-   Command line tool :
 
--   [ ] Command line tool
+    alldebrid <url>
+
+-   For file downloading :
+
+    wget $(alldebrid <url>)

@@ -6,11 +6,12 @@
   "repository": "git://github.com/Ananasr/node-alldebrid.git",
   "author": "Ananasr <h.nsr69@gmail.com>",
   "dependencies": {
+    "debug": "^2.2.0",
     "minimist": "^1.2.0",
     "request": "latest"
   },
   "license": "MIT",
   "bin": {
-	"alldebrid": "main.js"
-  }  
+    "alldebrid": "main.js"
+  }
 }

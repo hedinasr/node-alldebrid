@@ -65,6 +65,24 @@ var get_infos = function(callback) {
     });
 };
 
+var connect_and_debrid = function(login, password, url) {
+    alldebrid.connect(login, password, function(err) {
+        if (!err) {
+            alldebrid.debrid(url, function(err, data) {
+                if (!err) {
+                    debug('Receive correctly');
+                    console.log(data.link);
+                    process.exit(0);
+                } else {
+                    debug('Receive with error');
+                    console.error(err);
+                    process.exit(1);
+                }
+            });
+        }
+    });
+};
+
 
 if (argv.length != 1) {
     console.error('Usage: alldebrid <url>');
@@ -74,36 +92,16 @@ if (argv.length != 1) {
     get_infos(function(err, user) {
         if (!err) {
             debug(user);
-            alldebrid.connect(user.login, user.password, function(err) {
-                if(!err) {
-                    alldebrid.debrid(url, function(err, data) {
-                        if (!err) {
-                            console.log(data.link);
-                            process.exit(0);
-                        } else {
-                            console.error(err);
-                            process.exit(1);
-                        }
-                    });
-                }
-            });
+            connect_and_debrid(user.login, user.password, url);
         } else {
             debug('No infos.json file found');
             ask_and_store_infos(function(err, user) {
-                if(!err) {
-                    alldebrid.connect(user.login, user.password, function(err) {
-                        if (!err) {
-                            alldebrid.debrid(url, function(err, data) {
-                                if(!err) {
-                                    console.log(data);
-                                } else {
-                                    console.error(err);
-                                }
-                            });
-                        }
-                    });
+                debug(user);
+                if (!err) {
+                    connect_and_debrid(user.login, user.password, url);
                 } else {
                     console.log(err);
+                    process.exit(1);
                 }
             });
         }

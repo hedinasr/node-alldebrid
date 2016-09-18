@@ -12,17 +12,17 @@
 # Install<a id="orgheadline1"></a>
 
 -   For library using :
-
+    ```
     npm install node-alldebrid --save
-
+    ```
 -   For command line tool :
-
+    ```
     npm install -g node-alldebrid
-
+    ```
 # Usage<a id="orgheadline2"></a>
 
 -   Library :
-
+    ```javascript
     var Alldebrid = require('node-alldebrid');
     
     var alldebrid = new Alldebrid();
@@ -32,11 +32,12 @@
             return console.log(err);
         alldebrid.debrid('mylink');
     });
-
+    ```
 -   Command line tool :
-
+    ```
     alldebrid <url>
-
+    ```
 -   For file downloading :
-
+    ```
     wget $(alldebrid <url>)
+    ```

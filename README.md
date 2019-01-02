@@ -1,5 +1,9 @@
 # node-alldebrid
 
+[![NPM](https://nodei.co/npm/node-alldebrid.png)](https://nodei.co/npm/node-alldebrid/)
+
+[![Build Status](https://travis-ci.com/Ananasr/node-alldebrid.svg?branch=master)](https://travis-ci.com/Ananasr/node-alldebrid)
+
 This project provide a library and a command line interface to use Alldebrid.
 
 ## Installation

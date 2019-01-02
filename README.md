@@ -1,43 +1,48 @@
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#orgheadline1">1. Install</a></li>
-<li><a href="#orgheadline2">2. Usage</a></li>
-</ul>
-</div>
-</div>
+# node-alldebrid
 
+This project provide a library and a command line interface to use Alldebrid.
 
-# Install<a id="orgheadline1"></a>
+## Installation
 
--   For library using :
-    ```
-    npm install node-alldebrid --save
-    ```
--   For command line tool :
-    ```
-    npm install -g node-alldebrid
-    ```
-# Usage<a id="orgheadline2"></a>
+* For library using :
 
--   Library :
+    ```bash
+    $ npm install node-alldebrid --save
+    ```
+
+* For command line tool :
+
+    ```bash
+    $ npm install -g node-alldebrid
+    ```
+
+## Usage
+
+* Library :
+
     ```javascript
-    var Alldebrid = require('node-alldebrid');
-    
-    var alldebrid = new Alldebrid();
-    
-    alldebrid.connect('login', 'password', function(err) {
-        if (err)
-            return console.log(err);
-        alldebrid.debrid('mylink');
-    });
+    const Alldebrid = require('node-alldebrid');
+
+    let alldebrid = new Alldebrid();
+
+    alldebrid.connect('login', 'password')
+    .then(() => {
+        return alldebrid.debrid('https://mymovie.mkv');
+    })
+    .then(link => console.log(link));
     ```
--   Command line tool :
+
+* Command line tool :
+
+    ```bash
+    $ export ALLDEBRID_LOGIN=<login>
+    $ export ALLDEBRID_PASSWORD=<password>
+    $ alldebrid <url>
     ```
-    alldebrid <url>
-    ```
--   For file downloading :
-    ```
-    wget $(alldebrid <url>)
+
+* Download or stream video :
+
+    ```bash
+    $ wget $(alldebrid <url>) # Download
+    $ mpv $(alldebrid <url>)  # Video
     ```

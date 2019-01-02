@@ -1,17 +1,21 @@
 {
-  "name": "node-alldebrid",
-  "version": "0.1.0",
-  "description": "Alldebrid command line tool",
-  "main": "main.js",
-  "repository": "git://github.com/Ananasr/node-alldebrid.git",
-  "author": "Ananasr <h.nsr69@gmail.com>",
-  "dependencies": {
-    "debug": "^2.2.0",
-    "minimist": "^1.2.0",
-    "request": "latest"
-  },
-  "license": "MIT",
-  "bin": {
-    "alldebrid": "main.js"
-  }
+    "name": "node-alldebrid",
+    "version": "0.2.0",
+    "description": "Alldebrid command line tool",
+    "main": "main.js",
+    "repository": "git://github.com/Ananasr/node-alldebrid.git",
+    "author": "Hedi Nasr <h.nsr69@gmail.com>",
+    "dependencies": {
+        "request": "2.88.0"
+    },
+    "license": "MIT",
+    "bin": {
+        "alldebrid": "main.js"
+    },
+    "devDependencies": {
+        "jshint": "^2.9.7"
+    },
+    "scripts": {
+        "test": "jshint main.js"
+    }
 }

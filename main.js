@@ -2,108 +2,60 @@
 
 'use strict';
 
-var Alldebrid = require('./lib/alldebrid.js');
-var debug = require('debug')('main');
-var alldebrid = new Alldebrid();
+const Alldebrid = require('./lib/alldebrid.js');
+const fs = require('fs');
 
-/**
- * How to use : alldebrid <url>
- * For download => wget $(alldebrid http://mylink/myfilm.avi)
- */
+let alldebrid = new Alldebrid();
 
-var rl = require('readline').createInterface(process.stdin, process.stdout);
-var argv = process.argv.slice(2);
-var url = argv[0];
-var login, password;
-var prompts = ['login', 'password'];
-var p = 0;
-var data = {};
+const [,, ...args] = process.argv;
 
-/**
- * User object
- */
-var User = function(login, password) {
-    this._login = login;
-    this._password = password;
+let help = `
+Alldebrid CLI.
+
+Usage:
+  alldebrid <url>
+
+Options:
+  -h --help       Show this help screen.
+  --version       Show version.
+`;
+
+let username = process.env.ALLDEBRID_LOGIN;
+let password = process.env.ALLDEBRID_PASSWORD;
+
+//
+let url = args[0];
+
+function main(login, password, url) {
+    alldebrid.connect(login, password)
+        .then(() => {
+            return alldebrid.debrid(url);
+        })
+        .then(link => console.log(link))
+        .catch(err => console.error(err));
 }
 
-var get = function() {
-    rl.setPrompt(prompts[p] + '>');
-    rl.prompt();
-    p++;
-};
-
-var ask_and_store_infos = function(callback) {
-    get();
-    rl.on('line', function(line) {
-        data[prompts[p - 1]] = line;
-        if (p === prompts.length)
-            return rl.close();
-        get();
-    }).on('close', function() {
-        require('fs').writeFile('infos.json', JSON.stringify(data), function(err, user) {
-            if (!err)
-                callback(null, data);
-            else
-                callback(err);
-        });
+function version() {
+    fs.readFile('package.json', (err, data) => {
+        if (err) throw err;
+        let ver = JSON.parse(data).version;
+        console.log(ver);
     });
 }
 
-/**
- * Read user info from infos.json file
- */
-var get_infos = function(callback) {
-    var infos_json = require('fs').readFile('infos.json', 'utf-8', function(err, content) {
-        if (!err) {
-            debug('Reading infos.json successfully');
-            callback(null, JSON.parse(content));
-        } else {
-            debug('Error while reading infos.json');
-            callback(err);
-        }
-    });
-};
-
-var connect_and_debrid = function(login, password, url) {
-    alldebrid.connect(login, password, function(err) {
-        if (!err) {
-            alldebrid.debrid(url, function(err, data) {
-                if (!err) {
-                    debug('Receive correctly');
-                    console.log(data.link);
-                    process.exit(0);
-                } else {
-                    debug('Receive with error');
-                    console.error(err);
-                    process.exit(1);
-                }
-            });
-        }
-    });
-};
-
-
-if (argv.length != 1) {
-    console.error('Usage: alldebrid <url>');
+if (args.length != 1) {
+    console.error(help);
     process.exit(1);
 } else {
-    debug('Here we go!');
-    get_infos(function(err, user) {
-        if (!err) {
-            debug(user);
-            connect_and_debrid(user.login, user.password, url);
-        } else {
-            debug('No infos.json file found');
-            ask_and_store_infos(function(err, user) {
-                debug(user);
-                if (!err) {
-                    connect_and_debrid(user.login, user.password, url);
-                } else {
-                    console.log(err);
-                    process.exit(1);
-                }
-            });
-        }
-    });
+    switch (args[0]) {
+    case '-h':
+    case '--help':
+        console.log(help);
+        break;
+    case '--version':
+        version();
+        break;
+    default:
+        main(username, password, url);
+    }
 }
